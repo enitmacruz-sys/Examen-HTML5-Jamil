@@ -70,6 +70,10 @@ video,audio{width:100%;border-radius:12px;box-shadow:0 5px 20px rgba(0,0,0,.4);}
 #gZona:fullscreen,#gZona:-webkit-full-screen{background:#111;padding:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;}
 #gZona:fullscreen .gwrap,#gZona:-webkit-full-screen .gwrap{width:100%;max-width:1200px;}
 #gZona:fullscreen .gbar,#gZona:-webkit-full-screen .gbar{width:100%;max-width:1200px;margin-top:8px;}
+#mZona:fullscreen,#mZona:-webkit-full-screen{background:#111;padding:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;}
+#mZona:fullscreen .gwrap,#mZona:-webkit-full-screen .gwrap{width:100%;max-width:1200px;}
+#mZona:fullscreen .gbar,#mZona:-webkit-full-screen .gbar{width:100%;max-width:1200px;margin-top:8px;}
+#mZona:fullscreen #mControles,#mZona:-webkit-full-screen #mControles{display:flex!important;}
 @media(max-width:768px){.grid{grid-template-columns:1fr;}.b1,.b2,.b3,.b4,.b5,.b6,.b7,.b8,.b9{grid-column:span 1;grid-row:auto;}.fotos{grid-template-columns:repeat(2,1fr);}}
 </style>
 </head>
@@ -160,6 +164,7 @@ video,audio{width:100%;border-radius:12px;box-shadow:0 5px 20px rgba(0,0,0,.4);}
             <span id="mHud"></span>
             <button id="mbPausa" style="background:#f89820;color:#000;">&#9208; Pausa</button>
             <button id="mbReinicio" style="background:#4f8ef7;color:#fff;">&#8635; Reiniciar</button>
+            <button id="mbFS" style="background:#555;color:#fff;">&#9974; Pantalla Completa</button>
             <button id="mbMenu" style="background:#e44d26;color:#fff;">&#127968; Menu</button>
           </div>
         </div>
@@ -474,10 +479,11 @@ var juego = (function(){
   }
   function update(){
     if(estado!=='VOLANDO')return;
-    nOff+=0;var c=NV[nivel-1];
-    var vel=0;
+    nOff+=.4;var c=NV[nivel-1];
+    var prog=c.m>0?pasadas/c.m:0;
+    var vel=c.mn+(c.mx-c.mn)*prog;vel=Math.min(vel,c.mx);
     if(keys['ArrowUp'])av.y-=av.s;if(keys['ArrowDown'])av.y+=av.s;
-    if(keys['ArrowRight'])av.x+=av.s;
+    if(keys['ArrowLeft'])av.x-=av.s;if(keys['ArrowRight'])av.x+=av.s;
     av.x=Math.max(0,Math.min(W-av.w,av.x));av.y=Math.max(0,Math.min(H-av.h,av.y));
     obs.forEach(function(o){
       o.x-=vel;if(!o.ok&&o.x+o.w<av.x){o.ok=true;pasadas++;}
@@ -487,8 +493,8 @@ var juego = (function(){
       c.x-=vel;if(!c.got){var dx=(av.x+av.w/2)-c.x,dy=(av.y+av.h/2)-c.y;
       if(Math.sqrt(dx*dx+dy*dy)<c.r+16){c.got=true;mN++;mT++;}}
     });
-    if(pasadas>=c.m)estado=nivel<NIVELES.length?'SIGUIENTE_NIVEL':'GANASTE';
-    hud.textContent='Nivel '+nivel+' | '+pasadas+'/'+c.m+' | Vel:0 | Monedas:'+mT;
+    if(pasadas>=c.m)estado=nivel<5?'SIGUIENTE_NIVEL':'GANASTE';
+    hud.textContent='Nivel '+nivel+' | '+pasadas+'/'+c.m+' | Vel:'+vel.toFixed(1)+' | Monedas:'+mT;
   }
   function loop(){update();draw();requestAnimationFrame(loop);}
   cv.addEventListener('click',function(e){
@@ -521,7 +527,18 @@ var juego = (function(){
   }
   bindTouchButton(gBtnUp,'ArrowUp');
   bindTouchButton(gBtnRight,'ArrowRight');
-  function tFS(){var z=document.getElementById('gZona');if(!document.fullscreenElement)z.requestFullscreen().catch(function(){});else document.exitFullscreen();}
+  function tFS(){
+    var z=document.getElementById('gZona');
+    if(!document.fullscreenElement){
+      z.requestFullscreen().catch(function(){});
+      if(screen.orientation&&screen.orientation.lock){
+        screen.orientation.lock('landscape').catch(function(){});
+      }
+    } else {
+      document.exitFullscreen();
+      if(screen.orientation&&screen.orientation.unlock) screen.orientation.unlock();
+    }
+  }
   bFS.addEventListener('click',tFS);
   document.addEventListener('fullscreenchange',function(){bFS.textContent=document.fullscreenElement?'Salir Pantalla Completa':'\u26F6 Pantalla Completa';});
   draw();
@@ -851,9 +868,30 @@ var mario = (function(){
     });
   }
 
+  // Pantalla completa Mario
+  var mbFS=document.getElementById('mbFS');
+  function tMFS(){
+    var z=document.getElementById('mZona');
+    if(!document.fullscreenElement){
+      z.requestFullscreen().catch(function(){});
+      // Forzar orientación horizontal en celular
+      if(screen.orientation&&screen.orientation.lock){
+        screen.orientation.lock('landscape').catch(function(){});
+      }
+    } else {
+      document.exitFullscreen();
+      if(screen.orientation&&screen.orientation.unlock) screen.orientation.unlock();
+    }
+  }
+  if(mbFS) mbFS.addEventListener('click',tMFS);
+  document.addEventListener('fullscreenchange',function(){
+    if(mbFS) mbFS.textContent=document.fullscreenElement?'Salir Pantalla Completa':'\u26F6 Pantalla Completa';
+  });
+
   draw();
   return {init:function(){draw();}};
 })();
 </script>
 </body>
 </html>
+
