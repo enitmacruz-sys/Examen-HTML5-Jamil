@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portafolio - Jamil Cruz</title>
+<link rel="icon" href="imagen de arriba.png" type="image/png">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0f0f1a;--card:#1a1a2e;--border:#2a2a4a;--accent:#e44d26;--blue:#4f8ef7;--glow:rgba(228,77,38,.3);--green:#25d366;--orange:#f89820;--txt:#e8e8f0;--muted:#8888aa;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--txt);padding:30px 20px;min-height:100vh;background-image:radial-gradient(ellipse at 20% 20%,rgba(228,77,38,.08) 0%,transparent 50%),radial-gradient(ellipse at 80% 80%,rgba(79,142,247,.08) 0%,transparent 50%);}
+.grid{max-width:1100px;margin:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding-bottom:40px;}
+.box{background:var(--card);border-radius:20px;border:1px solid var(--border);box-shadow:0 4px 20px rgba(0,0,0,.3);overflow:hidden;display:flex;flex-direction:column;transition:transform .4s cubic-bezier(.175,.885,.32,1.275),box-shadow .4s,border-color .4s;}
+.box:hover{transform:translateY(-10px);box-shadow:0 25px 50px rgba(0,0,0,.5),0 0 30px var(--glow);border-color:var(--accent);}
+.bh{background:linear-gradient(135deg,var(--accent),#c0392b);color:#fff;padding:13px 20px;font-weight:600;text-align:center;font-size:15px;}
+.bc{padding:25px;text-align:center;flex-grow:1;}
+.b1,.b2{grid-column:1/span 4;}.b3,.b4{grid-column:1/span 3;}.b5{grid-column:4/span 1;grid-row:3/span 2;}.b6,.b7,.b8,.b9{grid-column:span 1;}
+.b9{grid-column:span 1;}
+.b1 .bc{background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);padding:40px 25px;position:relative;overflow:hidden;}
+.b1 img{width:100%;max-width:280px;border-radius:20px;margin-bottom:20px;border:3px solid var(--accent);box-shadow:0 0 30px var(--glow);}
+.b1 h1{color:var(--accent);font-size:30px;font-weight:700;}.b1 p{color:var(--blue);font-weight:600;font-size:17px;margin-top:8px;}
+.tabs{display:flex;justify-content:center;gap:8px;margin-bottom:18px;flex-wrap:wrap;}
+.tabs a{background:rgba(255,255,255,.05);padding:9px 20px;border-radius:50px;text-decoration:none;color:var(--muted);font-size:13px;cursor:pointer;border:1px solid var(--border);transition:all .3s;font-weight:600;}
+.tabs a:hover,.tabs a.on{background:var(--accent);color:#fff;border-color:var(--accent);transform:scale(1.05);}
+.panel{background:rgba(255,255,255,.03);padding:25px;border-radius:15px;text-align:left;min-height:300px;border:1px solid var(--border);}
+.panel:has(#gZona),.panel:has(#mZona){padding:12px;}
+.tab{display:none;line-height:1.7;font-size:14px;color:var(--muted);}.tab.on{display:block;animation:fade .4s ease;}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.tl{list-style:none;padding:0;margin:10px 0;}
+.tl li{margin-bottom:18px;padding-left:22px;border-left:3px solid var(--accent);position:relative;}
+.tl li::before{content:'';position:absolute;left:-8px;top:6px;width:12px;height:12px;background:var(--accent);border-radius:50%;}
+.tl b{color:var(--accent);display:block;font-size:14px;margin-bottom:3px;}
+.btn{display:inline-block;margin-top:15px;padding:10px 22px;background:var(--blue);color:#fff;text-decoration:none;border-radius:10px;font-weight:600;transition:all .3s;font-size:14px;}
+.fotos{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:15px;}
+.fotos img{width:100%;height:110px;object-fit:cover;border-radius:10px;border:1px solid var(--border);}
+video,audio{width:100%;border-radius:12px;box-shadow:0 5px 20px rgba(0,0,0,.4);}
+.pdf-list{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;}
+.pdf{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.04);border:1px solid var(--border);padding:13px 15px;margin-bottom:0;text-decoration:none;color:var(--txt);font-size:13px;border-radius:10px;font-weight:600;transition:all .3s;min-width:220px;}
+.pdf:hover{background:rgba(228,77,38,.1);border-color:var(--accent);color:var(--accent);transform:translateY(-2px);}
+.file-icon{width:24px;height:24px;object-fit:contain;}
+.word-file{color:var(--blue);}
+.upload-item{background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:14px;padding:14px;margin-bottom:10px;}
+.upload-item small{display:block;color:var(--muted);margin-top:6px;font-size:12px;}
+.file-selector{display:grid;grid-template-columns:1fr auto;gap:10px;margin-bottom:12px;}
+.file-selector label{display:flex;align-items:center;justify-content:center;padding:13px 18px;border:1px solid #25d366;border-radius:12px;background:linear-gradient(135deg,#2ecc71,#27ae60);color:#fff;cursor:pointer;transition:all .3s;box-shadow:0 10px 20px rgba(37,211,102,.2);}
+.file-selector label:hover{border-color:#1abc9c;background:linear-gradient(135deg,#2dd27f,#1abc9c);}
+.file-selector input[type=file]{display:none;}
+.file-info{padding:12px 14px;border-radius:12px;border:1px solid var(--border);background:rgba(255,255,255,.05);color:var(--muted);font-size:13px;line-height:1.5;}
+.track-card{display:grid;grid-template-columns:80px 1fr;gap:10px;align-items:center;margin-bottom:14px;padding:14px;border:1px solid var(--border);border-radius:14px;background:rgba(255,255,255,.04);}
+.track-card img{width:80px;height:80px;object-fit:cover;border-radius:12px;}
+.track-card .track-info p{margin:0 0 8px;color:var(--txt);font-size:13px;font-weight:600;}
+.track-card .track-info audio{width:100%;border-radius:10px;}
+.inp{width:100%;padding:13px 15px;margin-bottom:12px;border-radius:12px;border:1px solid var(--border);background:rgba(255,255,255,.05);color:var(--txt);font-family:inherit;font-size:14px;outline:none;}
+.inp:focus{border-color:var(--accent);}.inp::placeholder{color:var(--muted);}
+.wbtn{width:100%;padding:15px;background:linear-gradient(135deg,var(--green),#1da851);color:#fff;border:none;border-radius:12px;font-weight:700;cursor:pointer;font-size:15px;font-family:inherit;}
+.avatar{width:90px;height:90px;border-radius:50%;border:3px solid var(--accent);object-fit:cover;margin-bottom:12px;}
+.badge{display:inline-block;background:rgba(228,77,38,.15);color:var(--accent);border:1px solid var(--accent);padding:4px 12px;border-radius:50px;font-size:11px;font-weight:600;margin-top:8px;}
+.gzone{border-radius:16px;padding:0;width:100%;}.gwrap{border-radius:14px;overflow:hidden;display:block;width:100%;}
+.gwrap canvas{display:block;width:100%;height:auto;}
+.gbar{display:none;margin-top:10px;background:rgba(0,0,0,.7);border-radius:12px;padding:10px 16px;flex-direction:row;align-items:center;gap:10px;width:100%;box-sizing:border-box;}
+.gbar span{color:#fff;font-size:13px;font-weight:600;flex:1;}
+.gbar button{border:none;border-radius:8px;font-weight:700;padding:8px 18px;cursor:pointer;font-size:14px;font-family:inherit;}
+.mobile-controls{display:none;gap:10px;margin-top:12px;justify-content:center;}
+.mobile-controls button{border:none;border-radius:14px;background:rgba(255,255,255,.08);color:#fff;padding:14px 0;font-size:18px;width:64px;height:64px;cursor:pointer;box-shadow:0 8px 20px rgba(0,0,0,.35);}
+.mobile-controls button:active{transform:scale(.97);}
+@media(max-width:768px){.gbar{flex-wrap:wrap;}.gbar button{flex:1;min-width:120px;}.mobile-controls{display:flex;}}
+#gWrap{border:2px solid var(--orange);box-shadow:0 0 30px rgba(248,152,32,.3);}
+#mWrap{border:2px solid #e44d26;box-shadow:0 0 30px rgba(228,77,38,.3);}
+#gZona:fullscreen,#gZona:-webkit-full-screen{background:#111;padding:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;}
+#gZona:fullscreen .gwrap,#gZona:-webkit-full-screen .gwrap{width:100%;max-width:1200px;}
+#gZona:fullscreen .gbar,#gZona:-webkit-full-screen .gbar{width:100%;max-width:1200px;margin-top:8px;}
+@media(max-width:768px){.grid{grid-template-columns:1fr;}.b1,.b2,.b3,.b4,.b5,.b6,.b7,.b8,.b9{grid-column:span 1;grid-row:auto;}.fotos{grid-template-columns:repeat(2,1fr);}}
+</style>
+</head>
+<body>
+<div class="grid">
+
+<section class="box b1">
+  <div class="bc">
+    <img src="foto 2.webp" alt="Banner">
+    <h1>DESARROLLO WEB CON HTML5</h1>
+    <p>Jamil Fernando Cruz Chavez &middot; SENATI</p>
+  </div>
+</section>
+
+<section class="box b2">
+  <div class="bc">
+    <div class="tabs">
+      <a onclick="tab('bio',this)" class="on">&#128336; Linea de Tiempo</a>
+      <a onclick="tab('soft',this)">&#128444; Galeria</a>
+      <a onclick="tab('game',this)">&#9992; Juego Avion</a>
+      <a onclick="tab('mario',this)">&#127794; Juego Mario</a>
+      <a onclick="tab('red',this)">&#128241; Redes</a>
+    </div>
+    <div class="panel">
+      <div id="bio" class="tab on">
+        <div onclick="toggleTL()" style="cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:4px 0;user-select:none;">
+          <h3 style="margin:0;color:var(--accent);">LINEA DE TIEMPO DE LA HISTORIA DE HTML</h3>
+          <span id="tlarrow" style="color:var(--accent);font-size:20px;">&#9660;</span>
+        </div>
+        <div id="tlinfo" style="max-height:0;overflow:hidden;transition:max-height .4s ease;">
+          <ul class="tl" style="margin-top:20px;">
+            <li><b>1980 - ORIGEN: HTML</b> El origen del lenguaje HTML se remonta al fisico Tim Berners-Lee, un trabajador del CERN quien a finales de 1980 propuso el lenguaje HTML junto con el protocolo HTTP para compartir informacion entre cientificos de todo el mundo.</li>
+            <li><b>1989-1991 - EL PRIMER DOCUMENTO EN HTML</b> El primer documento formal con la descripcion de HTML se publico en 1991 bajo el nombre HTML Tags (Etiquetas HTML) y todavia hoy puede ser consultado online como reliquia informatica.</li>
+            <li><b>1993 - PROPUESTA DE ESTANDARIZACION</b> El IETF realiza la primera propuesta oficial. Se definieron etiquetas para imagenes, tablas y formularios, pero ninguna propuesta (HTML y HTML+) consiguio convertirse en estandar oficial aun.</li>
+            <li><b>1995 - HTML 2.0</b> El organismo IETF organiza un grupo de trabajo y publica, el 22 de septiembre, el estandar HTML 2.0, el cual es considerado el primer estandar oficial de HTML.</li>
+            <li><b>1997 - HTML 3.2</b> Primera recomendacion publicada por el W3C. Incorpora avances como applets de Java y texto que fluye alrededor de las imagenes.</li>
+            <li><b>1998 - HTML 4.0</b> Supone un gran salto: incluye hojas de estilo CSS, scripts, mejoras en accesibilidad, tablas complejas y formularios.</li>
+            <li><b>2004 - HTML 5</b> Se funda el WHATWG como una alianza entre Apple, Oracle, Opera y Mozilla para comenzar con la definicion del estandar HTML 5.</li>
+            <li><b>2010 - YOUTUBE (HTML)</b> Sitios web de gran peso como YouTube implementan el uso del HTML 5 para sustituir el uso de la tecnologia Flash.</li>
+          </ul>
+          <a href="https://esquemasde.com/historia-de-html/" target="_blank" class="btn">Ver Historia Completa</a>
+        </div>
+      </div>
+
+      <div id="soft" class="tab">
+        <h3 style="margin-top:0;color:var(--accent);margin-bottom:10px;">&#127891; Sobre este Portafolio</h3>
+        <p style="color:var(--muted);line-height:1.7;margin-bottom:10px;">Este portafolio fue desarrollado como proyecto final del curso de <strong style="color:var(--txt);">Desarrollo Web con HTML5</strong> en SENATI. Incluye estructura semantica, multimedia, formularios y juegos interactivos.</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;">
+          <span style="background:rgba(228,77,38,.15);color:var(--accent);border:1px solid var(--accent);padding:3px 10px;border-radius:50px;font-size:12px;">HTML5</span>
+          <span style="background:rgba(79,142,247,.15);color:var(--blue);border:1px solid var(--blue);padding:3px 10px;border-radius:50px;font-size:12px;">CSS3</span>
+          <span style="background:rgba(248,152,32,.15);color:var(--orange);border:1px solid var(--orange);padding:3px 10px;border-radius:50px;font-size:12px;">JavaScript</span>
+          <span style="background:rgba(37,211,102,.15);color:#25d366;border:1px solid #25d366;padding:3px 10px;border-radius:50px;font-size:12px;">Canvas API</span>
+          <span style="background:rgba(79,142,247,.15);color:var(--blue);border:1px solid var(--blue);padding:3px 10px;border-radius:50px;font-size:12px;">Java</span>
+        </div>
+        <p style="color:var(--muted);font-size:13px;margin-bottom:8px;">Capturas de interfaces y laboratorios del ciclo:</p>
+        <div class="fotos">
+          <img src="imagen a.jpg" alt="Cap1"><img src="imagen b.webp" alt="Cap2">
+          <img src="imagen c.webp" alt="Cap3"><img src="imagen d.webp" alt="Cap4">
+        </div>
+      </div>
+
+      <div id="game" class="tab">
+        <div id="gZona" class="gzone">
+          <div id="gWrap" class="gwrap"><canvas id="gc" width="730" height="420"></canvas></div>
+          <div id="gBar" class="gbar">
+            <span id="gHud"></span>
+            <button id="bPausa" style="background:#f89820;color:#000;">&#9208; Pausa</button>
+            <button id="bReinicio" style="background:#4f8ef7;color:#fff;">&#8635; Reiniciar</button>
+            <button id="bFS" style="background:#555;color:#fff;">&#9974; Pantalla Completa</button>
+            <button id="bMenu" style="background:#e44d26;color:#fff;">&#127968; Menu</button>
+          </div>
+          <div class="mobile-controls" id="gTouchControls">
+            <button id="gBtnUp">&#8593;</button>
+            <button id="gBtnRight">&#8594;</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="mario" class="tab">
+        <div id="mZona" class="gzone">
+          <div id="mWrap" class="gwrap"><canvas id="mc" width="730" height="420"></canvas></div>
+          <div id="mControles" style="display:none;margin-top:8px;gap:8px;justify-content:center;align-items:center;">
+            <button id="mBtnIzq" style="width:70px;height:70px;font-size:28px;border:none;border-radius:50%;background:rgba(255,255,255,0.2);color:#fff;cursor:pointer;">&#8592;</button>
+            <button id="mBtnSalt" style="width:70px;height:70px;font-size:24px;border:none;border-radius:50%;background:rgba(255,200,0,0.4);color:#fff;cursor:pointer;">&#8593;</button>
+            <button id="mBtnDer" style="width:70px;height:70px;font-size:28px;border:none;border-radius:50%;background:rgba(255,255,255,0.2);color:#fff;cursor:pointer;">&#8594;</button>
+          </div>
+          <div id="mBar" class="gbar">
+            <span id="mHud"></span>
+            <button id="mbPausa" style="background:#f89820;color:#000;">&#9208; Pausa</button>
+            <button id="mbReinicio" style="background:#4f8ef7;color:#fff;">&#8635; Reiniciar</button>
+            <button id="mbMenu" style="background:#e44d26;color:#fff;">&#127968; Menu</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="red" class="tab">
+        <p style="color:var(--muted);margin-bottom:15px;">Sigueme para mas proyectos:</p>
+        <a href="https://www.youtube.com/@ENITMA-3" target="_blank" class="btn" style="background:#FF0000;display:block;margin-bottom:12px;text-align:center;">YouTube: @ENITMA-3</a>
+        <a href="https://www.tiktok.com/@enitma_jhan" target="_blank" class="btn" style="background:#333;display:block;text-align:center;">TikTok: @enitma_jhan</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="box b3">
+  <div class="bh">&#127916; Video de Presentacion</div>
+  <div class="bc"><video controls><source src="mivideo.mp4" type="video/mp4"></video></div>
+</section>
+
+<section class="box b4">
+  <div class="bc" style="text-align:left;">
+    <div onclick="toggleInfo('html5info')" style="cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:4px 0;user-select:none;">
+      <h4 style="color:var(--accent);font-size:17px;margin:0;">&#128196; Que es HTML5?</h4>
+      <span id="html5arrow" style="color:var(--accent);font-size:20px;">&#9660;</span>
+    </div>
+    <div id="html5info" style="max-height:0;overflow:hidden;transition:max-height .4s ease;">
+      <p style="color:var(--muted);line-height:1.8;margin:12px 0 10px;"><strong style="color:var(--txt);">HTML5</strong> es la quinta version del lenguaje de marcado estandar para crear paginas web. Fue oficializado por el W3C en 2014 y es el lenguaje base de toda la web moderna.</p>
+      <p style="color:var(--muted);line-height:1.8;margin-bottom:10px;">Incluye soporte nativo para <strong style="color:var(--txt);">video, audio, graficos (Canvas), geolocalizacion y almacenamiento local</strong>, sin necesidad de plugins externos como Flash.</p>
+      <p style="color:var(--muted);line-height:1.8;margin-bottom:12px;">Trabaja junto a <strong style="color:var(--txt);">CSS3</strong> y <strong style="color:var(--txt);">JavaScript</strong>, formando la triada fundamental del desarrollo web frontend.</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;">
+        <span style="background:rgba(228,77,38,.15);color:var(--accent);border:1px solid var(--accent);padding:4px 12px;border-radius:50px;font-size:12px;">Semantica</span>
+        <span style="background:rgba(79,142,247,.15);color:var(--blue);border:1px solid var(--blue);padding:4px 12px;border-radius:50px;font-size:12px;">Multimedia</span>
+        <span style="background:rgba(37,211,102,.15);color:#25d366;border:1px solid #25d366;padding:4px 12px;border-radius:50px;font-size:12px;">APIs Web</span>
+        <span style="background:rgba(248,152,32,.15);color:var(--orange);border:1px solid var(--orange);padding:4px 12px;border-radius:50px;font-size:12px;">Responsivo</span>
+      </div>
+      <hr style="border:none;border-top:1px solid var(--border);margin-bottom:14px;">
+      <h4 style="color:var(--accent);font-size:15px;margin-bottom:10px;">&#127918; Que puedes hacer aqui?</h4>
+      <p style="color:var(--muted);line-height:1.8;margin-bottom:8px;">&#9992; <strong style="color:var(--txt);">Jugar</strong> - Simulador de Vuelo y Mario Castillo. Esquiva obstaculos y recoge monedas.</p>
+      <p style="color:var(--muted);line-height:1.8;margin-bottom:8px;">&#127925; <strong style="color:var(--txt);">Escuchar musica</strong> - Reproductor de audio en la parte inferior.</p>
+      <p style="color:var(--muted);line-height:1.8;">&#128172; <strong style="color:var(--txt);">Consultas por WhatsApp</strong> - Llena el formulario y te respondo directo al WhatsApp.</p>
+    </div>
+  </div>
+</section>
+
+<section class="box b5">
+  <div class="bh">&#128233; Contacto Rapido</div>
+  <div class="bc">
+    <input class="inp" type="text" id="un" placeholder="Tu Nombre">
+    <input class="inp" type="email" id="um" placeholder="Tu Correo">
+    <textarea class="inp" id="umessage" placeholder="Agrega tu consulta" rows="4" style="resize:none;"></textarea>
+    <button class="wbtn" onclick="enviar()">Enviar a WhatsApp</button>
+  </div>
+</section>
+
+<section class="box b6">
+  <div class="bh">&#127925; Audio</div>
+  <div class="bc" style="padding:0;">
+    <div class="track-card" style="margin-bottom:0;padding:14px;border-radius:0;border:none;">
+      <img src="imagen musica.png" alt="Forever Young">
+      <div class="track-info">
+        <p>Ayrton Senna - Forever Young</p>
+        <audio controls><source src="musica.mp3" type="audio/mpeg"></audio>
+      </div>
+    </div>
+    <div style="padding:0 14px 14px;">
+      <p style="color:var(--muted);margin:0 0 10px;font-size:14px;font-weight:600;">Otras canciones</p>
+      <div class="track-card">
+        <img src="Ayrton Senna - Everybody Wants To Rule The World.png" alt="Everybody Wants To Rule The World">
+        <div class="track-info">
+          <p>Ayrton Senna - Everybody Wants To Rule The World</p>
+          <audio controls><source src="Ayrton Senna - Everybody Wants To Rule The World.mp3" type="audio/mpeg"></audio>
+        </div>
+      </div>
+      <div class="track-card">
+        <img src="Ayrton Senna (Viva La Vida).png" alt="Viva La Vida">
+        <div class="track-info">
+          <p>Ayrton Senna - Viva La Vida</p>
+          <audio controls><source src="Ayrton Senna (Viva La Vida).mp3" type="audio/mpeg"></audio>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="box b7">
+  <div class="bh">&#128193; Laboratorios PDF</div>
+  <div class="bc">
+    <div class="pdf-list">
+      <a href="S8 - Laboratorio Nro. 03 -html.pdf" target="_blank" class="pdf">
+        <img src="imagen pdf.png" alt="PDF" class="file-icon">Lab 03: Estructuras HTML
+      </a>
+      <a href="S13 - Laboratorio Nro. 05 -html.pdf" target="_blank" class="pdf">
+        <img src="imagen pdf.png" alt="PDF" class="file-icon">Lab 05: Formularios
+      </a>
+      <a href="S15 - Laboratorio Nro. 06 -html.pdf" target="_blank" class="pdf">
+        <img src="imagen pdf.png" alt="PDF" class="file-icon">Lab 06: Multimedia
+      </a>
+      <a href="Laboratorios PDF/Introducción de linea de Tiempo de HTML5.docx" target="_blank" class="pdf word-file">
+        <img src="imagen word.png" alt="Word" class="file-icon">Introducción de Línea de Tiempo (Word)
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="box b9">
+  <div class="bh">&#128229; Subir Archivo</div>
+  <div class="bc" style="text-align:left;">
+    <p style="color:var(--muted);margin-bottom:14px;line-height:1.7;">Sube una foto, PDF o archivo Word. El archivo se guarda en tu navegador para verlo desde esta página.</p>
+    <div class="file-selector">
+      <label for="fileInput">Elegir archivo</label>
+      <div id="fileName" class="file-info">Ningún archivo seleccionado</div>
+    </div>
+    <input id="fileInput" class="inp" type="file" accept=".pdf,.doc,.docx,image/*">
+    <div id="uploadMessage" style="margin-top:12px;color:var(--muted);font-size:13px;"></div>
+    <div id="fileList" style="margin-top:18px;"></div>
+  </div>
+</section>
+
+<section class="box b8">
+  <div class="bh">&#128100; Desarrollador</div>
+  <div class="bc">
+    <img src="foto.webp" alt="Jamil" class="avatar">
+    <p style="font-weight:600;font-size:14px;">Jamil Cruz Chavez</p>
+    <p style="color:var(--muted);font-size:12px;margin-top:4px;">SENATI - Desarrollo Web</p>
+    <span class="badge">HTML5 - CSS3 - Java</span>
+  </div>
+</section>
+
+</div>
+<script>
+function toggleInfo(id){
+  var el=document.getElementById(id), arrow=document.getElementById('html5arrow');
+  if(el.style.maxHeight==='0px'||el.style.maxHeight===''){el.style.maxHeight='600px';if(arrow)arrow.textContent='\u25B2';}
+  else{el.style.maxHeight='0px';if(arrow)arrow.textContent='\u25BC';}
+}
+function toggleTL(){
+  var el=document.getElementById('tlinfo'), arrow=document.getElementById('tlarrow');
+  if(el.style.maxHeight==='0px'||el.style.maxHeight===''){el.style.maxHeight='1000px';if(arrow)arrow.textContent='\u25B2';}
+  else{el.style.maxHeight='0px';if(arrow)arrow.textContent='\u25BC';}
+}
+function tab(id,el){
+  document.querySelectorAll('.tab').forEach(function(c){c.classList.remove('on');});
+  document.querySelectorAll('.tabs a').forEach(function(a){a.classList.remove('on');});
+  document.getElementById(id).classList.add('on');
+  if(el) el.classList.add('on');
+  if(id==='game')  setTimeout(function(){juego.init();},50);
+  if(id==='mario') setTimeout(function(){mario.init();},50);
+}
+function enviar(){
+  var n=document.getElementById('un').value.trim(), m=document.getElementById('um').value.trim();
+  var msg=document.getElementById('umessage').value.trim();
+  if(n && m && msg){
+    var texto='Hola Jamil, soy '+n+'. Correo: '+m+'. Consulta: '+msg;
+    window.open('https://wa.me/51933777848?text='+encodeURIComponent(texto),'_blank');
+  } else {
+    alert('Completa nombre, correo y tu consulta.');
+  }
+}
+
+function escapeHtml(text){
+  return text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;');
+}
+
+function mostrarArchivos(){
+  var list=document.getElementById('fileList');
+  var uploads=JSON.parse(localStorage.getItem('uploads')||'[]');
+  list.innerHTML='';
+  if(!uploads.length){
+    list.innerHTML='<p style="color:var(--muted);font-size:13px;">No hay archivos guardados.</p>';
+    return;
+  }
+  uploads.forEach(function(item, index){
+    var fecha=new Date(item.date).toLocaleString('es-PE');
+    var size=(item.size/1024).toFixed(1)+' KB';
+    var div=document.createElement('div');
+    div.className='upload-item';
+    var label = escapeHtml(item.type||'Archivo');
+    var linkText = item.type && item.type.indexOf('image/')===0 ? 'Ver imagen' : 'Ver / Descargar';
+    div.innerHTML='<strong>'+escapeHtml(item.name)+'</strong>'+ 
+      '<small>'+label+' · '+size+' · '+fecha+'</small>'+ 
+      '<div style="margin-top:10px; display:flex; align-items:center; gap:10px; flex-wrap:wrap;">'
+      +'<a href="'+item.data+'" target="_blank" rel="noopener noreferrer" download="'+escapeHtml(item.name)+'">'+linkText+'</a>'
+      +'<button type="button" onclick="eliminarArchivo('+index+')" style="padding:6px 10px;border:1px solid rgba(255,255,255,.2);border-radius:10px;background:rgba(255,255,255,.06);color:#fff;cursor:pointer;">Eliminar</button>'
+      +'</div>';
+    list.appendChild(div);
+  });
+}
+
+function guardarArchivo(){
+  var inp=document.getElementById('fileInput');
+  var msg=document.getElementById('uploadMessage');
+  if(!inp.files.length){ msg.textContent='Selecciona un archivo primero.'; return; }
+  var file=inp.files[0];
+  var reader=new FileReader();
+  reader.onload=function(e){
+    var uploads=JSON.parse(localStorage.getItem('uploads')||'[]');
+    uploads.unshift({
+      name:file.name,
+      type:file.type,
+      size:file.size,
+      date:new Date().toISOString(),
+      data:e.target.result
+    });
+    localStorage.setItem('uploads', JSON.stringify(uploads.slice(0,20)));
+    msg.textContent='Archivo guardado localmente. Ya puedes verlo en la lista.';
+    inp.value='';
+    document.getElementById('fileName').textContent='Ningún archivo seleccionado';
+    mostrarArchivos();
+  };
+  reader.readAsDataURL(file);
+}
+
+function eliminarArchivo(index){
+  var uploads=JSON.parse(localStorage.getItem('uploads')||'[]');
+  if(index<0||index>=uploads.length) return;
+  uploads.splice(index,1);
+  localStorage.setItem('uploads', JSON.stringify(uploads));
+  mostrarArchivos();
+}
+
+document.getElementById('fileInput').addEventListener('change', function(){
+  var info=document.getElementById('fileName');
+  if(this.files.length){
+    info.textContent=this.files[0].name;
+    guardarArchivo();
+  } else {
+    info.textContent='Ningún archivo seleccionado';
+  }
+});
+
+window.addEventListener('load', function(){ mostrarArchivos(); });
+</script>
+
+<script>
+// ========== JUEGO AVION ==========
+var juego = (function(){
+  var cv=document.getElementById('gc'), cx=cv.getContext('2d'), W=cv.width, H=cv.height;
+  var bar=document.getElementById('gBar'), hud=document.getElementById('gHud');
+  var bP=document.getElementById('bPausa'), bR=document.getElementById('bReinicio'), bM=document.getElementById('bMenu');
+  var gBtnUp=document.getElementById('gBtnUp'), gBtnRight=document.getElementById('gBtnRight');
+  var NV=[{m:18,mn:2.4,mx:8},{m:22,mn:3.2,mx:10.6},{m:26,mn:4.2,mx:13.6},{m:30,mn:5.2,mx:16.4},{m:38,mn:6.6,mx:19.6}];
+  var iMenu=new Image(); iMenu.src='captura_juego.webp';
+  var iFondo=new Image(); iFondo.src='fondo_nubes.jpg';
+  var iAv=new Image(); iAv.src='AVION.png';
+  var av,obs,coins,nivel,pasadas,estado,cnt,cTimer,mT,mN,keys,nOff,activo;
+  function rst(){av=null;obs=[];coins=[];nivel=1;pasadas=0;estado='MENU';mT=0;mN=0;keys={};nOff=0;activo=false;clearInterval(cTimer);}
+  rst();
+  function sN(n){
+    nivel=n;pasadas=0;mN=0;av={x:80,y:180,w:55,h:28,s:10};cnt=3;estado='CUENTA';obs=[];coins=[];
+    var c=NV[n-1],xp=600;
+    for(var i=0;i<c.m;i++){
+      var h=90+Math.floor(Math.random()*210);
+      obs.push(i%2===0?{x:xp,y:0,w:50,h:h,ok:false}:{x:xp,y:H-h,w:50,h:h,ok:false});
+      coins.push({x:xp+160,y:70+Math.floor(Math.random()*(H-140)),r:11,got:false});
+      xp+=320;
+    }
+    bar.style.display='flex';clearInterval(cTimer);
+    cTimer=setInterval(function(){if(cnt>1)cnt--;else{estado='VOLANDO';clearInterval(cTimer);}},1000);
+  }
+  function ov(a){cx.fillStyle='rgba(0,0,0,'+a+')';cx.fillRect(0,0,W,H);}
+  function draw(){
+    if(iFondo.complete&&iFondo.naturalWidth>0){
+      var iw=iFondo.naturalWidth,off=Math.floor(nOff*.8)%iw;
+      cx.drawImage(iFondo,off,0,iw,iFondo.naturalHeight,0,0,W,H);
+      if(off>0)cx.drawImage(iFondo,off-iw,0,iw,iFondo.naturalHeight,0,0,W,H);
+    }else{cx.fillStyle='#5ba3d9';cx.fillRect(0,0,W,H);}
+    obs.forEach(function(o){
+      if(o.ok)return;
+      var g=cx.createLinearGradient(o.x,0,o.x+o.w,0);g.addColorStop(0,'#556');g.addColorStop(1,'#334');
+      cx.fillStyle=g;cx.beginPath();cx.roundRect(o.x,o.y,o.w,o.h,4);cx.fill();
+    });
+    coins.forEach(function(c){
+      if(c.got)return;
+      cx.save();cx.shadowColor='#ffe066';cx.shadowBlur=10;cx.fillStyle='#ffd700';
+      cx.beginPath();cx.arc(c.x,c.y,c.r,0,Math.PI*2);cx.fill();
+      cx.shadowBlur=0;cx.fillStyle='#7a5c00';cx.font='bold 12px Arial';
+      cx.textAlign='center';cx.textBaseline='middle';cx.fillText('S',c.x,c.y);cx.restore();
+    });
+    if(av){
+      if(iAv.complete&&iAv.naturalWidth>0)cx.drawImage(iAv,av.x-10,av.y-20,80,60);
+      else{cx.fillStyle='#fff';cx.fillRect(av.x,av.y,av.w,av.h);}
+    }
+    cx.textAlign='center';cx.textBaseline='alphabetic';
+    if(estado==='MENU'){
+      if(iMenu.complete&&iMenu.naturalWidth>0)cx.drawImage(iMenu,0,0,W,H);
+      cx.fillStyle='rgba(0,0,0,.55)';cx.fillRect(0,0,W,H);
+      cx.fillStyle='#f89820';cx.font='bold 52px Arial';cx.fillText('SIMULADOR DE VUELO',W/2,H/2-90);
+      cx.fillStyle='#fff';cx.font='16px Arial';cx.fillText('5 Niveles - Esquiva obstaculos - Recoge monedas',W/2,H/2-50);
+      cx.fillStyle='#2ecc71';cx.beginPath();cx.roundRect(W/2-90,H/2-20,180,55,12);cx.fill();
+      cx.fillStyle='#000';cx.font='bold 26px Arial';cx.fillText('JUGAR',W/2,H/2+18);
+      cx.fillStyle='#ddd';cx.font='13px Arial';cx.fillText('Controles: derecha, arriba y abajo',W/2,H/2+78);
+    }else if(estado==='CUENTA'){
+      ov(.45);cx.fillStyle='#f89820';cx.font='bold 100px Arial';cx.fillText(''+cnt,W/2,H/2+35);
+      cx.fillStyle='#fff';cx.font='bold 20px Arial';cx.fillText('Preparate!',W/2,H/2-60);
+    }else if(estado==='PAUSA'){
+      ov(.6);cx.fillStyle='#f89820';cx.font='bold 54px Arial';cx.fillText('PAUSA',W/2,H/2);
+    }else if(estado==='PERDISTE'){
+      ov(.62);cx.fillStyle='#e44d26';cx.font='bold 68px Arial';cx.fillText('CHOQUE!',W/2,H/2-20);
+      cx.fillStyle='#fff';cx.font='18px Arial';cx.fillText('Presiona R para reiniciar',W/2,H/2+30);
+    }else if(estado==='SIGUIENTE_NIVEL'){
+      ov(.62);cx.fillStyle='#2ecc71';cx.font='bold 48px Arial';cx.fillText('NIVEL '+nivel+' COMPLETADO!',W/2,H/2-30);
+      cx.fillStyle='#ffd700';cx.font='bold 20px Arial';cx.fillText('Monedas: '+mN,W/2,H/2+20);
+      cx.fillStyle='#fff';cx.font='17px Arial';cx.fillText('Presiona ENTER para continuar',W/2,H/2+58);
+    }else if(estado==='GANASTE'){
+      ov(.78);cx.fillStyle='#f89820';cx.font='bold 40px Arial';cx.fillText('MAESTRO DEL VUELO!',W/2,H/2-80);
+      cx.fillStyle='#fff';cx.font='22px Arial';cx.fillText('Monedas totales: '+mT,W/2,H/2-35);
+      var tot=0;NV.forEach(function(v){tot+=v.m;});var e=mT/tot>=.8?3:mT/tot>=.4?2:1;
+      cx.font='56px Arial';var st='';for(var s=0;s<e;s++)st+='\u2B50';for(var s2=e;s2<3;s2++)st+='\u2606';
+      cx.fillText(st,W/2,H/2+20);
+    }
+    cx.textAlign='left';cx.textBaseline='alphabetic';
+  }
+  function update(){
+    if(estado!=='VOLANDO')return;
+    nOff+=0;var c=NV[nivel-1];
+    var vel=0;
+    if(keys['ArrowUp'])av.y-=av.s;if(keys['ArrowDown'])av.y+=av.s;
+    if(keys['ArrowRight'])av.x+=av.s;
+    av.x=Math.max(0,Math.min(W-av.w,av.x));av.y=Math.max(0,Math.min(H-av.h,av.y));
+    obs.forEach(function(o){
+      o.x-=vel;if(!o.ok&&o.x+o.w<av.x){o.ok=true;pasadas++;}
+      if(o.x<av.x+av.w&&o.x+o.w>av.x&&o.y<av.y+av.h&&o.y+o.h>av.y)estado='PERDISTE';
+    });
+    coins.forEach(function(c){
+      c.x-=vel;if(!c.got){var dx=(av.x+av.w/2)-c.x,dy=(av.y+av.h/2)-c.y;
+      if(Math.sqrt(dx*dx+dy*dy)<c.r+16){c.got=true;mN++;mT++;}}
+    });
+    if(pasadas>=c.m)estado=nivel<NIVELES.length?'SIGUIENTE_NIVEL':'GANASTE';
+    hud.textContent='Nivel '+nivel+' | '+pasadas+'/'+c.m+' | Vel:0 | Monedas:'+mT;
+  }
+  function loop(){update();draw();requestAnimationFrame(loop);}
+  cv.addEventListener('click',function(e){
+    if(estado!=='MENU')return;
+    var r=cv.getBoundingClientRect(),mx=(e.clientX-r.left)*(W/r.width),my=(e.clientY-r.top)*(H/r.height);
+    if(mx>W/2-90&&mx<W/2+90&&my>H/2-20&&my<H/2+35){mT=0;sN(1);if(!activo){activo=true;loop();}}
+  });
+  document.addEventListener('keydown',function(e){
+    keys[e.key]=true;
+    if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].indexOf(e.key)!==-1)e.preventDefault();
+    if(e.key==='Enter'&&estado==='SIGUIENTE_NIVEL')sN(nivel+1);
+    if((e.key==='r'||e.key==='R')&&estado!=='MENU')sN(nivel);
+    if(e.key==='f'||e.key==='F')tFS();
+  });
+  document.addEventListener('keyup',function(e){keys[e.key]=false;});
+  bP.addEventListener('click',function(){
+    if(estado==='VOLANDO'){estado='PAUSA';bP.textContent='Continuar';}
+    else if(estado==='PAUSA'){estado='VOLANDO';bP.textContent='\u23F8 Pausa';}
+  });
+  bR.addEventListener('click',function(){if(nivel&&estado!=='MENU')sN(nivel);});
+  bM.addEventListener('click',function(){clearInterval(cTimer);keys={};estado='MENU';activo=false;bar.style.display='none';draw();});
+  var bFS=document.getElementById('bFS');
+  function bindTouchButton(btn, key){
+    if(!btn) return;
+    btn.addEventListener('touchstart', function(e){e.preventDefault();keys[key]=true;}, {passive:false});
+    btn.addEventListener('touchend', function(e){e.preventDefault();keys[key]=false;}, {passive:false});
+    btn.addEventListener('mousedown', function(){keys[key]=true;});
+    btn.addEventListener('mouseup', function(){keys[key]=false;});
+    btn.addEventListener('mouseleave', function(){keys[key]=false;});
+  }
+  bindTouchButton(gBtnUp,'ArrowUp');
+  bindTouchButton(gBtnRight,'ArrowRight');
+  function tFS(){var z=document.getElementById('gZona');if(!document.fullscreenElement)z.requestFullscreen().catch(function(){});else document.exitFullscreen();}
+  bFS.addEventListener('click',tFS);
+  document.addEventListener('fullscreenchange',function(){bFS.textContent=document.fullscreenElement?'Salir Pantalla Completa':'\u26F6 Pantalla Completa';});
+  draw();
+  return {init:function(){draw();}};
+})();
+</script>
+
+<script>
+// ========== JUEGO MARIO ==========
+var mario = (function(){
+  var cv=document.getElementById('mc'), cx=cv.getContext('2d'), W=cv.width, H=cv.height;
+  var bar=document.getElementById('mBar'), hud=document.getElementById('mHud');
+  var bP=document.getElementById('mbPausa'), bR=document.getElementById('mbReinicio'), bM=document.getElementById('mbMenu');
+
+  var iMario=new Image();  iMario.src='imagen de mario.png';
+  var iBowser=new Image(); iBowser.src='imagen de Bowser.png';
+  var iErizo=new Image();  iErizo.src='Imagen erizo.png';
+  var iMarron=new Image(); iMarron.src='imagen ladrillo marron.png';
+  var iGris=new Image();   iGris.src='imagen ladrillo gris.png';
+  var iFondo=new Image();  iFondo.src='imagen lava.png';
+  var iFondo2=new Image(); iFondo2.src='paisaje 2.png';
+  var iHacha=new Image();  iHacha.src='imagen Hacha.png';
+  var iCadena=new Image(); iCadena.src='imagen cadenas.png';
+  var iPlanta=new Image(); iPlanta.src='imagen planta.png';
+
+  var NIVELES=[
+    {vb:1.0,nObs:4, nMon:8, largo:2200,titulo:'Nivel 1'},
+    {vb:1.4,nObs:6, nMon:12,largo:2600,titulo:'Nivel 2 - FINAL'}
+  ];
+
+  var E=H/600;
+  var PY=Math.round(450*E), SY=PY-Math.round(90*E);
+  var MW=Math.round(60*E), MH=Math.round(90*E);
+  var BW=Math.round(110*E), BH=Math.round(110*E);
+  var BLK=Math.round(40*E), HW=Math.round(30*E), HH=Math.round(45*E);
+  var OW=Math.round(35*E), OH=Math.round(60*E);
+
+  var mX,mY,camX,velY,salt,izq,der,marioDir;
+  var bX,bY,bowserDir;
+  var hachaX,puente,ejuego,nivel,mCoins,mTotal,keys,activo,estado;
+  var obstaculos,monedas,enemigos,LARGO;
+  var cayendo,caida,bCaida;
+
+  function rst(){
+    mX=Math.round(150*E);mY=SY;camX=0;velY=0;salt=false;izq=false;der=false;marioDir=1;duck=false;
+    bX=Math.round(500*E);bY=SY;bowserDir=-1;
+    ejuego=0;mCoins=0;mTotal=0;keys={};activo=false;estado='MENU';nivel=1;
+    obstaculos=[];monedas=[];enemigos=[];LARGO=2200;
+    cayendo=false;caida=0;bCaida=0;
+  }
+  rst();
+
+  function generarNivel(n){
+    var cfg=NIVELES[n-1];
+    LARGO=Math.round(cfg.largo*(W/800));
+    hachaX=LARGO-Math.round(120*E);
+    puente=n!==2; cayendo=false;caida=0;bCaida=0;
+    mX=Math.round(150*E);mY=SY;camX=0;velY=0;salt=false;izq=false;der=false;marioDir=1;duck=false;
+    bX=Math.round(500*E);bY=SY;bowserDir=-1;ejuego=0;mCoins=0;
+    obstaculos=[];
+    for(var i=0;i<cfg.nObs;i++){
+      var ox=400+i*Math.floor((LARGO-600)/cfg.nObs)+Math.floor(Math.random()*80);
+      obstaculos.push({x:ox,y:PY-OH,w:OW,h:OH});
+    }
+    enemigos=[];
+    if(n===2){
+      var ex=Math.round(1050*E);
+      enemigos.push({x:ex,y:SY-OH,w:OW,h:OH,dir:1,speed:3,minX:Math.round(150*E),maxX:LARGO-MW});
+    }
+    monedas=[];
+    for(var j=0;j<cfg.nMon;j++){
+      var mx2=300+j*Math.floor((LARGO-400)/cfg.nMon)+Math.floor(Math.random()*60);
+      var my2=SY-Math.round((40+Math.random()*80)*E);
+      monedas.push({x:mx2,y:my2,r:Math.round(12*E),got:false});
+    }
+  }
+
+  function iniciar(n){
+    nivel=n||1;if(n===1)mTotal=0;
+    generarNivel(nivel);estado='JUGANDO';
+    bar.style.display='flex';
+    var mc=document.getElementById('mControles');if(mc)mc.style.display='flex';
+    if(!activo){activo=true;loop();}
+  }
+
+  function ov(a){cx.fillStyle='rgba(0,0,0,'+a+')';cx.fillRect(0,0,W,H);}
+
+  function flip(img,x,y,w,h,f){
+    cx.save();
+    if(f){cx.translate(x+w,y);cx.scale(-1,1);cx.drawImage(img,0,0,w,h);}
+    else cx.drawImage(img,x,y,w,h);
+    cx.restore();
+  }
+
+  function dibujarPuente(x0,yBase,pW){
+    var th=Math.round(18*E),tw=Math.round(22*E),gap=Math.round(5*E);
+    var ropeY=yBase-Math.round(40*E);
+    cx.strokeStyle='#4a2800';cx.lineWidth=Math.round(3*E);
+    cx.beginPath();cx.moveTo(x0,ropeY);cx.lineTo(x0+pW,ropeY);cx.stroke();
+    cx.beginPath();cx.moveTo(x0,ropeY+Math.round(8*E));cx.lineTo(x0+pW,ropeY+Math.round(8*E));cx.stroke();
+    for(var tx=x0;tx<x0+pW;tx+=tw+gap){
+      cx.fillStyle='rgba(0,0,0,0.3)';cx.fillRect(tx+2,yBase-th+2,tw,th);
+      cx.fillStyle='#8B4513';cx.fillRect(tx,yBase-th,tw,th);
+      cx.fillStyle='#5a2d0c';cx.fillRect(tx,yBase-th,tw,Math.round(3*E));
+      cx.fillStyle='#c47a3a';cx.fillRect(tx,yBase-Math.round(3*E),tw,Math.round(3*E));
+    }
+  }
+
+  function draw(){
+    if(nivel===2 && iFondo2.complete&&iFondo2.naturalWidth>0){
+      cx.drawImage(iFondo2,0,0,W,H);
+    } else if(iFondo.complete&&iFondo.naturalWidth>0){
+      cx.drawImage(iFondo,0,0,W,H);
+    } else{cx.fillStyle='#8b1a00';cx.fillRect(0,0,W,H);}
+
+    cx.save();cx.translate(-camX,0);
+
+    // Muro gris
+    if(nivel !== 2){
+      for(var y=Math.round(280*E);y<H;y+=BLK){
+        if(iGris.complete&&iGris.naturalWidth>0)cx.drawImage(iGris,hachaX+BLK,y,BLK,BLK);
+        else{cx.fillStyle='#777';cx.fillRect(hachaX+BLK,y,BLK,BLK);}
+      }
+    }
+
+    // Suelo
+    var pInicioX=hachaX-Math.round(420*E);
+    var sueloHasta = nivel === 2 ? LARGO : pInicioX;
+    for(var x=0;x<sueloHasta;x+=BLK){
+      if(iMarron.complete&&iMarron.naturalWidth>0)cx.drawImage(iMarron,x,PY,BLK,BLK);
+      else{cx.fillStyle='#8B4513';cx.fillRect(x,PY,BLK,BLK);}
+    }
+    if(puente||cayendo){
+      var palpha=cayendo?Math.max(0.05,1-caida/Math.round(180*E)):1;
+      cx.globalAlpha=palpha;
+      dibujarPuente(pInicioX,PY+(cayendo?caida:0),Math.round(420*E));
+      cx.globalAlpha=1;
+    }
+    if(cayendo){
+      var lx=hachaX-Math.round(80*E);
+      if(iMarron.complete&&iMarron.naturalWidth>0)cx.drawImage(iMarron,lx,PY,BLK*2,BLK);
+      else{cx.fillStyle='#8B4513';cx.fillRect(lx,PY,BLK*2,BLK);}
+    }
+
+    // Obstaculos
+    for(var i=0;i<obstaculos.length;i++){
+      var o=obstaculos[i];
+      if(iPlanta.complete&&iPlanta.naturalWidth>0)cx.drawImage(iPlanta,o.x,o.y,o.w,o.h);
+      else{cx.fillStyle='#2ecc71';cx.fillRect(o.x,o.y,o.w,o.h);}
+    }
+
+    // Enemigos nivel 2
+    for(var k=0;k<enemigos.length;k++){
+      var e=enemigos[k];
+      if(iErizo.complete&&iErizo.naturalWidth>0)cx.drawImage(iErizo,e.x,e.y,e.w,e.h);
+      else{cx.fillStyle='#e74c3c';cx.fillRect(e.x,e.y,e.w,e.h);}
+    }
+
+    // Monedas
+    for(var j=0;j<monedas.length;j++){
+      var c=monedas[j];if(c.got)continue;
+      cx.save();cx.shadowColor='#ffe066';cx.shadowBlur=10;
+      cx.fillStyle='#ffd700';cx.beginPath();cx.arc(c.x,c.y,c.r,0,Math.PI*2);cx.fill();
+      cx.shadowBlur=0;cx.fillStyle='#7a5c00';
+      cx.font='bold '+Math.round(11*E)+'px Arial';cx.textAlign='center';cx.textBaseline='middle';
+      cx.fillText('S',c.x,c.y);cx.restore();
+    }
+
+    // Cadena y hacha
+    if(puente){
+      if(iCadena.complete&&iCadena.naturalWidth>0)
+        cx.drawImage(iCadena,hachaX-Math.round(20*E),Math.round(360*E),Math.round(70*E),Math.round(50*E));
+    }
+    if(iHacha.complete&&iHacha.naturalWidth>0)
+      cx.drawImage(iHacha,hachaX-Math.round(15*E),Math.round(405*E),HW,HH);
+    else{cx.fillStyle='#ffd700';cx.fillRect(hachaX-Math.round(15*E),Math.round(405*E),HW,HH);}
+
+    // Bowser
+    if(nivel!==2){
+      var bDY=bY+(cayendo?bCaida:0);
+      cx.globalAlpha=cayendo?Math.max(0.05,1-bCaida/Math.round(180*E)):1;
+      if(iBowser.complete&&iBowser.naturalWidth>0)flip(iBowser,bX,bDY,BW,BH,bowserDir===1);
+      else{cx.fillStyle='#2ecc71';cx.fillRect(bX,bDY,BW,BH);}
+      cx.globalAlpha=1;
+    }
+
+    // Mario
+    if(ejuego!==1){
+      var mH = duck ? MH/2 : MH;
+      var mYDraw = duck ? mY + MH/2 : mY;
+      if(iMario.complete&&iMario.naturalWidth>0)flip(iMario,mX,mYDraw,MW,mH,marioDir===-1);
+      else{cx.fillStyle='#e44d26';cx.fillRect(mX,mYDraw,MW,mH);}
+    }
+
+    cx.restore();
+
+    // Pantallas
+    cx.textAlign='center';cx.textBaseline='alphabetic';
+    if(estado==='MENU'){
+      ov(.72);
+      cx.fillStyle='#e44d26';cx.font='bold 48px Arial';cx.fillText('MARIO CASTILLO',W/2,H/2-80);
+      cx.fillStyle='#fff';cx.font='16px Arial';cx.fillText(NIVELES.length+' Niveles - Esquiva Bowser - Recoge monedas - Llega al hacha',W/2,H/2-45);
+      cx.fillStyle='#2ecc71';cx.beginPath();cx.roundRect(W/2-90,H/2-18,180,52,12);cx.fill();
+      cx.fillStyle='#000';cx.font='bold 26px Arial';cx.fillText('JUGAR',W/2,H/2+18);
+      cx.fillStyle='#ddd';cx.font='13px Arial';cx.fillText('Flechas: mover | Arriba/Espacio: saltar',W/2,H/2+68);
+    }else if(estado==='PAUSA'){
+      ov(.6);cx.fillStyle='#f89820';cx.font='bold 54px Arial';cx.fillText('PAUSA',W/2,H/2);
+    }else if(ejuego===1){
+      ov(.65);cx.fillStyle='#e44d26';cx.font='bold 62px Arial';cx.fillText('GAME OVER',W/2,H/2-15);
+      cx.fillStyle='#fff';cx.font='18px Arial';cx.fillText('Presiona R para reiniciar',W/2,H/2+35);
+    }else if(ejuego===3){
+      ov(.65);cx.fillStyle='#2ecc71';cx.font='bold 46px Arial';cx.fillText(NIVELES[nivel-1].titulo+' COMPLETADO!',W/2,H/2-35);
+      cx.fillStyle='#ffd700';cx.font='bold 20px Arial';cx.fillText('Monedas este nivel: '+mCoins,W/2,H/2+15);
+      cx.fillStyle='#fff';cx.font='17px Arial';cx.fillText('Presiona ENTER para el siguiente nivel',W/2,H/2+55);
+    }else if(ejuego===2){
+      ov(.75);cx.fillStyle='#ffd700';cx.font='bold 44px Arial';cx.fillText('SALVASTE A LA PRINCESA!',W/2,H/2-90);
+      cx.fillStyle='#fff';cx.font='22px Arial';cx.fillText('Monedas totales: '+mTotal,W/2,H/2-45);
+      var e=mTotal>=60?3:mTotal>=30?2:1;
+      cx.font='54px Arial';var st='';
+      for(var s=0;s<e;s++)st+='\u2B50';for(var s2=e;s2<3;s2++)st+='\u2606';
+      cx.fillText(st,W/2,H/2+15);
+      cx.fillStyle='#aaa';cx.font='15px Arial';cx.fillText('Presiona R para jugar de nuevo',W/2,H/2+70);
+    }
+    cx.textAlign='left';cx.textBaseline='alphabetic';
+  }
+
+  function update(){
+    if(estado!=='JUGANDO')return;
+    if(cayendo){
+      caida+=Math.round(5*E);bCaida+=Math.round(7*E);
+      if(bCaida>Math.round(200*E)){cayendo=false;ejuego=nivel<NIVELES.length?3:2;}
+      return;
+    }
+    if(ejuego!==0)return;
+    var spd=Math.round(5*E);
+    if(izq){mX-=spd;marioDir=-1;}if(der){mX+=spd;marioDir=1;}
+    duck = keys['ArrowDown'];
+    mX=Math.max(0,Math.min(LARGO-MW,mX));
+    camX=mX-Math.round(200*E);if(camX<0)camX=0;if(camX>LARGO-W)camX=LARGO-W;
+    velY+=0.8;mY+=velY;
+    if(mY>=SY && (nivel === 2 || (mX < hachaX + BLK && puente))){mY=SY;velY=0;salt=false;}
+    if(mY>H+50){ejuego=1;return;}
+    var cfg=NIVELES[nivel-1],dx=mX-bX;
+    if(Math.abs(dx)>8){bX+=dx>0?cfg.vb:-cfg.vb;bowserDir=dx>0?1:-1;}
+    bY=SY;
+    for(var k=0;k<enemigos.length;k++){
+      var e=enemigos[k];
+      if(mX > e.x) e.x += e.speed; else e.x -= e.speed;
+      if(e.x < e.minX) e.x = e.minX;
+      if(e.x > e.maxX) e.x = e.maxX;
+    }
+    if(mX+MW-Math.round(10*E)>bX+Math.round(10*E)&&mX+Math.round(10*E)<bX+BW-Math.round(10*E)&&
+       mY+MH>bY+Math.round(15*E)&&mY<bY+BH&&puente){ejuego=1;return;}
+    for(var i=0;i<obstaculos.length;i++){
+      var o=obstaculos[i];
+      if(mX+MW-Math.round(5*E)>o.x&&mX+Math.round(5*E)<o.x+o.w&&mY+MH>o.y&&mY<o.y+o.h){ejuego=1;return;}
+    }
+    for(var k=0;k<enemigos.length;k++){
+      var e=enemigos[k];
+      if(mX+MW-Math.round(5*E)>e.x&&mX+Math.round(5*E)<e.x+e.w&&mY+MH>e.y&&mY<e.y+e.h){ejuego=1;return;}
+    }
+    for(var j=0;j<monedas.length;j++){
+      var c=monedas[j];if(c.got)continue;
+      if(mX+MW>c.x-c.r&&mX<c.x+c.r&&mY+MH>c.y-c.r&&mY<c.y+c.r){c.got=true;mCoins++;mTotal++;}
+    }
+    var hx=hachaX-Math.round(15*E),hy=Math.round(405*E);
+    if(mX+MW>hx&&mX<hx+HW&&mY+MH>hy&&mY<hy+HH){
+      if(nivel===2){
+        ejuego=2;
+      } else {
+        puente=false;cayendo=true;caida=0;bCaida=0;
+        mX=hachaX-Math.round(80*E);mY=SY;velY=0;salt=false;izq=false;der=false;
+      }
+    }
+    hud.textContent=NIVELES[nivel-1].titulo+' | Monedas: '+mCoins+' | Total: '+mTotal;
+  }
+
+  function loop(){update();draw();requestAnimationFrame(loop);}
+
+  cv.addEventListener('click',function(e){
+    if(estado!=='MENU')return;
+    var r=cv.getBoundingClientRect(),mx=(e.clientX-r.left)*(W/r.width),my=(e.clientY-r.top)*(H/r.height);
+    if(mx>W/2-90&&mx<W/2+90
+    &&my>H/2-18&&my<H/2+34)iniciar(1);
+  });
+
+  document.addEventListener('keydown',function(e){
+    var t=document.getElementById('mario');if(!t||!t.classList.contains('on'))return;
+    if(e.key==='ArrowLeft')izq=true;if(e.key==='ArrowRight')der=true;
+    if((e.key==='ArrowUp'||e.key===' ')&&!salt&&ejuego===0&&estado==='JUGANDO'){velY = nivel === 2 ? -22 : -16;salt=true;}
+    if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight',' '].indexOf(e.key)!==-1)e.preventDefault();
+    if(e.key==='Enter'&&ejuego===3)iniciar(nivel+1);
+    if((e.key==='r'||e.key==='R')&&estado!=='MENU')iniciar(ejuego===2?1:nivel);
+  });
+  document.addEventListener('keyup',function(e){
+    if(e.key==='ArrowLeft')izq=false;if(e.key==='ArrowRight')der=false;
+  });
+
+  bP.addEventListener('click',function(){
+    if(estado==='JUGANDO'){estado='PAUSA';bP.textContent='Continuar';}
+    else if(estado==='PAUSA'){estado='JUGANDO';bP.textContent='\u23F8 Pausa';}
+  });
+  bR.addEventListener('click',function(){iniciar(ejuego===2?1:nivel);});
+  bM.addEventListener('click',function(){estado='MENU';activo=false;bar.style.display='none';draw();});
+
+  var btnIzq=document.getElementById('mBtnIzq');
+  var btnDer=document.getElementById('mBtnDer');
+  var btnSalt=document.getElementById('mBtnSalt');
+  if(btnIzq){
+    btnIzq.addEventListener('touchstart',function(e){e.preventDefault();izq=true;marioDir=-1;},{passive:false});
+    btnIzq.addEventListener('touchend',function(e){e.preventDefault();izq=false;},{passive:false});
+    btnIzq.addEventListener('mousedown',function(){izq=true;marioDir=-1;});
+    btnIzq.addEventListener('mouseup',function(){izq=false;});
+  }
+  if(btnDer){
+    btnDer.addEventListener('touchstart',function(e){e.preventDefault();der=true;marioDir=1;},{passive:false});
+    btnDer.addEventListener('touchend',function(e){e.preventDefault();der=false;},{passive:false});
+    btnDer.addEventListener('mousedown',function(){der=true;marioDir=1;});
+    btnDer.addEventListener('mouseup',function(){der=false;});
+  }
+  if(btnSalt){
+    btnSalt.addEventListener('touchstart',function(e){
+      e.preventDefault();if(!salt&&ejuego===0&&estado==='JUGANDO'){velY=-16;salt=true;}
+    },{passive:false});
+    btnSalt.addEventListener('mousedown',function(){
+      if(!salt&&ejuego===0&&estado==='JUGANDO'){velY=-16;salt=true;}
+    });
+  }
+
+  draw();
+  return {init:function(){draw();}};
+})();
+</script>
+</body>
+</html>
