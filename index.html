@@ -57,7 +57,7 @@ video,audio{width:100%;border-radius:12px;box-shadow:0 5px 20px rgba(0,0,0,.4);}
 .avatar{width:90px;height:90px;border-radius:50%;border:3px solid var(--accent);object-fit:cover;margin-bottom:12px;}
 .badge{display:inline-block;background:rgba(228,77,38,.15);color:var(--accent);border:1px solid var(--accent);padding:4px 12px;border-radius:50px;font-size:11px;font-weight:600;margin-top:8px;}
 .gzone{border-radius:16px;padding:0;width:100%;}.gwrap{border-radius:14px;overflow:hidden;display:block;width:100%;}
-.gwrap canvas{display:block;width:100%;height:auto;}
+.gwrap canvas{display:block;width:100%;height:auto;aspect-ratio:730/420;}
 .gbar{display:none;margin-top:10px;background:rgba(0,0,0,.7);border-radius:12px;padding:10px 16px;flex-direction:row;align-items:center;gap:10px;width:100%;box-sizing:border-box;}
 .gbar span{color:#fff;font-size:13px;font-weight:600;flex:1;}
 .gbar button{border:none;border-radius:8px;font-weight:700;padding:8px 18px;cursor:pointer;font-size:14px;font-family:inherit;}
@@ -406,7 +406,7 @@ var juego = (function(){
   var bar=document.getElementById('gBar'), hud=document.getElementById('gHud');
   var bP=document.getElementById('bPausa'), bR=document.getElementById('bReinicio'), bM=document.getElementById('bMenu');
   var gBtnUp=document.getElementById('gBtnUp'), gBtnRight=document.getElementById('gBtnRight');
-  var NV=[{m:18,mn:2.4,mx:8},{m:22,mn:3.2,mx:10.6},{m:26,mn:4.2,mx:13.6},{m:30,mn:5.2,mx:16.4},{m:38,mn:6.6,mx:19.6}];
+  var NV=[{m:18,mn:1.0,mx:4},{m:22,mn:1.5,mx:5.5},{m:26,mn:2.0,mx:7},{m:30,mn:2.5,mx:9},{m:38,mn:3.0,mx:11}];
   var iMenu=new Image(); iMenu.src='captura_juego.webp';
   var iFondo=new Image(); iFondo.src='fondo_nubes.jpg';
   var iAv=new Image(); iAv.src='AVION.png';
@@ -565,8 +565,8 @@ var mario = (function(){
   var iPlanta=new Image(); iPlanta.src='imagen planta.png';
 
   var NIVELES=[
-    {vb:1.0,nObs:4, nMon:8, largo:2200,titulo:'Nivel 1'},
-    {vb:1.4,nObs:6, nMon:12,largo:2600,titulo:'Nivel 2 - FINAL'}
+    {vb:0.5,nObs:4, nMon:8, largo:2200,titulo:'Nivel 1'},
+    {vb:0.9,nObs:6, nMon:12,largo:2600,titulo:'Nivel 2 - FINAL'}
   ];
 
   var E=H/600;
