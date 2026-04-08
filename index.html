@@ -74,6 +74,19 @@ video,audio{width:100%;border-radius:12px;box-shadow:0 5px 20px rgba(0,0,0,.4);}
 #mZona:fullscreen .gwrap,#mZona:-webkit-full-screen .gwrap{width:100%;max-width:1200px;}
 #mZona:fullscreen .gbar,#mZona:-webkit-full-screen .gbar{width:100%;max-width:1200px;margin-top:8px;}
 #mZona:fullscreen #mControles,#mZona:-webkit-full-screen #mControles{display:flex!important;}
+/* Celular landscape: juegos ocupan toda la pantalla */
+@media(max-width:768px) and (orientation:landscape){
+  #gZona,#mZona{position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:0!important;}
+  #gZona .gwrap,#mZona .gwrap{width:100%;max-width:none;border-radius:0!important;}
+  #gZona .gwrap canvas,#mZona .gwrap canvas{width:100%!important;height:auto!important;max-height:70vh;}
+  #gZona .gbar,#mZona .gbar{width:100%;border-radius:0!important;margin-top:4px;}
+  #mControles{display:flex!important;}
+  .panel{padding:0!important;}
+}
+/* Celular portrait: aviso de rotar */
+@media(max-width:768px) and (orientation:portrait){
+  #gZona .gwrap canvas,#mZona .gwrap canvas{width:100%!important;}
+}
 @media(max-width:768px){.grid{grid-template-columns:1fr;}.b1,.b2,.b3,.b4,.b5,.b6,.b7,.b8,.b9{grid-column:span 1;grid-row:auto;}.fotos{grid-template-columns:repeat(2,1fr);}}
 </style>
 </head>
@@ -137,6 +150,7 @@ video,audio{width:100%;border-radius:12px;box-shadow:0 5px 20px rgba(0,0,0,.4);}
 
       <div id="game" class="tab">
         <div id="gZona" class="gzone">
+          <div id="rotar-avion" style="display:none;background:#111;color:#fff;text-align:center;padding:30px;font-size:18px;font-weight:600;">&#128260; Rota tu celular para jugar</div>
           <div id="gWrap" class="gwrap"><canvas id="gc" width="730" height="420"></canvas></div>
           <div id="gBar" class="gbar">
             <span id="gHud"></span>
@@ -154,6 +168,7 @@ video,audio{width:100%;border-radius:12px;box-shadow:0 5px 20px rgba(0,0,0,.4);}
 
       <div id="mario" class="tab">
         <div id="mZona" class="gzone">
+          <div id="rotar-mario" style="display:none;background:#111;color:#fff;text-align:center;padding:30px;font-size:18px;font-weight:600;">&#128260; Rota tu celular para jugar</div>
           <div id="mWrap" class="gwrap"><canvas id="mc" width="730" height="420"></canvas></div>
           <div id="mControles" style="display:none;margin-top:8px;gap:8px;justify-content:center;align-items:center;">
             <button id="mBtnIzq" style="width:70px;height:70px;font-size:28px;border:none;border-radius:50%;background:rgba(255,255,255,0.2);color:#fff;cursor:pointer;">&#8592;</button>
@@ -539,7 +554,20 @@ var juego = (function(){
       if(screen.orientation&&screen.orientation.unlock) screen.orientation.unlock();
     }
   }
-  bFS.addEventListener('click',tFS);
+  // Detectar orientación para aviso
+  function checkOrientacion(){
+    var isMobile=window.innerWidth<=768;
+    var isPortrait=window.innerHeight>window.innerWidth;
+    var ra=document.getElementById('rotar-avion');
+    var gw=document.getElementById('gWrap');
+    if(ra&&gw){ra.style.display=(isMobile&&isPortrait)?'block':'none';gw.style.display=(isMobile&&isPortrait)?'none':'block';}
+    var rm=document.getElementById('rotar-mario');
+    var mw=document.getElementById('mWrap');
+    if(rm&&mw){rm.style.display=(isMobile&&isPortrait)?'block':'none';mw.style.display=(isMobile&&isPortrait)?'none':'block';}
+  }
+  window.addEventListener('resize',checkOrientacion);
+  window.addEventListener('orientationchange',checkOrientacion);
+  checkOrientacion();  bFS.addEventListener('click',tFS);
   document.addEventListener('fullscreenchange',function(){bFS.textContent=document.fullscreenElement?'Salir Pantalla Completa':'\u26F6 Pantalla Completa';});
   draw();
   return {init:function(){draw();}};
@@ -894,4 +922,3 @@ var mario = (function(){
 </script>
 </body>
 </html>
-
